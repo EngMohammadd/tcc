@@ -9,6 +9,6 @@
           <div class="nav-item text-nowrap">
             <a class="nav-link px-3" href="Sing in.html"> {{__('views/component.logout')}}</a>
           </div>
-        </div>
+        </div><a href=""></a>
       </header>
 </div>
