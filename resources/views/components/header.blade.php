@@ -6,9 +6,7 @@
         </button>
         <input class="form-control form-control-dark w-100" type="text" placeholder="{{__('views/component.search')}}" aria-label="{{__('views/component.search')}}">
         <div class="navbar-nav">
-          <div class="nav-item text-nowrap">
-            <a class="nav-link px-3" href="Sing in.html"> {{__('views/component.logout')}}</a>
-          </div>
+          
         </div>
       </header>
 </div>
