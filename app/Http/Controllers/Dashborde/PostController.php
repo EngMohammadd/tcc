@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Dashborde;
 
 
-use Illuminate\Http\Request;
-use App\Http\Requests\PostRequest;
+//use Illuminate\Http\Request;
+use App\Http\Requests\AdvertismentRequest;
+use App\Http\Requests\LectureRequest;
+use App\Http\Requests\MarkRequest;
+use App\Http\Requests\ProgramRequest;
 
 use App\Traits\DashbordeTrait;
 use App\Models\Post;
@@ -154,7 +157,7 @@ class PostController extends Controller
     ############################################################################################################
 
 
-    public function storeAdvertisment(PostRequest $request)
+    public function storeAdvertisment(AdvertismentRequest $request)
     {
         //get category id 
         $category_id = Category::select('id','name')->where('name','advertisment')->get();
@@ -189,8 +192,7 @@ class PostController extends Controller
         
     }
 
-
-    public function storeMark(PostRequest $request)
+    public function storeMark(MarkRequest $request)
     {
         $category_id = Category::select('id','name')->where('name','mark')->get();
         $category_id = $category_id[0]->id;
@@ -222,7 +224,7 @@ class PostController extends Controller
     }
 
 
-    public function storeProgram(PostRequest $request)
+    public function storeProgram(ProgramRequest $request)
     {
         //get category id 
         $category_id = Category::select('id','name')->where('name','program')->get();
@@ -256,7 +258,7 @@ class PostController extends Controller
     }
 
 
-    public function storeLecture(PostRequest $request)
+    public function storeLecture(LectureRequest $request)
     {
         //get category id 
         $category_id = Category::select('id','name')->where('name','Lecture')->get();
@@ -418,7 +420,7 @@ class PostController extends Controller
         ################################ Begin functions update ############################################
     ############################################################################################################
 
-    public function updateAdvertisment(PostRequest $request ,$Advertisment_id)
+    public function updateAdvertisment(AdvertismentRequest $request ,$Advertisment_id)
     {
         $advertisment = Post::find($Advertisment_id);
         
@@ -441,7 +443,7 @@ class PostController extends Controller
     }
 
 
-    public function updateMark(PostRequest $request ,$Mark_id)
+    public function updateMark(MarkRequest $request ,$Mark_id)
     {
         $mark = Post::find($Mark_id);
         
@@ -464,7 +466,7 @@ class PostController extends Controller
     }
 
 
-    public function updateProgram(PostRequest $request ,$Program_id)
+    public function updateProgram(ProgramRequest $request ,$Program_id)
     {
         $program = Post::find($Program_id);
         
@@ -486,7 +488,7 @@ class PostController extends Controller
     }
 
 
-    public function updateLecture(PostRequest $request ,$Lectrue_id)
+    public function updateLecture(LectureRequest $request ,$Lectrue_id)
     {
         $lectrue = Post::find($Lectrue_id);
         
