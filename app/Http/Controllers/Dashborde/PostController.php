@@ -208,8 +208,8 @@ class PostController extends Controller
             'user_id'=>1,
             'subject_id'=>$request->subject,
         ]);
-        $post->years()->attach($request->years);
-        $post->depts()->attach($request->depts);
+        $post->years()->attach($request->year);
+        $post->depts()->attach($request->dept);
 
         //insert into table url
         Url::create([
@@ -455,8 +455,8 @@ class PostController extends Controller
             'subject_id'=>$request->subject,
             
         ]);
-        $mark->years()->sync($request->years);
-        $mark->depts()->sync($request->depts);
+        $mark->years()->sync($request->year);
+        $mark->depts()->sync($request->dept);
 
         return redirect()->route('Mark.index')->with(['success' => __('messages.data has been updated successfully') . $Mark_id]);
 

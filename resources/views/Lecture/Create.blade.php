@@ -9,14 +9,24 @@
             <label for="dept" class="form-label f-1">{{__('views/post.dept')}} </label>
             <select class="form-control" name="dept">
                 @foreach ($depts as $dept)                                 
-                        <option value="{{$dept->id}}">{{$dept->name}}</option>
+                        <option value="{{$dept->id}}"
+                            @if (old('dept')==$dept->id)
+                                selected
+                            @endif>
+                            {{$dept->name}}
+                        </option>
                 @endforeach
                 </select>
             <br>
             <label for="dept" class="form-label">{{__('views/post.year')}} </label>
             <select class="form-control" name="year">
             @foreach ($years as $year)                                 
-                    <option value="{{$year->id}}">{{$year->name}}</option>
+                    <option value="{{$year->id}}"
+                        @if (old('year')==$year->id)
+                            selected
+                        @endif>
+                        {{$year->name}}
+                    </option>
             @endforeach
             </select>
             <br>
@@ -26,7 +36,12 @@
             @foreach ($subjects as $subject)
                 <div class="form-check">
                     
-                    <option value="{{$subject->id}}">{{$subject->name}}</option>
+                    <option value="{{$subject->id}}"
+                        @if (old('subject')== $subject->id)
+                            selected
+                        @endif>
+                        {{$subject->name}}
+                    </option>
                     
                 </div>
             @endforeach
@@ -36,7 +51,7 @@
 
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">{{__('views/post.title').' '.__('views/post.lecture')}}</label>
-                <input type="text" name="title" cols="30" rows="8" placeholder="{{__('views/post.title').' '.__('views/post.lecture')}}" class="form-control">
+                <input type="text" name="title" cols="30" rows="8" placeholder="{{__('views/post.title').' '.__('views/post.lecture')}}" class="form-control" value="{{old('title')}}">
                 @error('title')
                     <small class="form-text text-danger">{{$message}}</small>
                 @enderror
@@ -53,6 +68,9 @@
             <div class="mb-3">
                 <label for="formFile" class="form-label"> {{__('views/post.choose file')}} </label>
                 <input class="form-control" type="file" id="formFile" name="file">
+                @error('file')
+                <small class="form-text text-danger">{{$message}}</small>
+            @enderror
             </div>
             <br>
             

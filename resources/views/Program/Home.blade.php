@@ -28,7 +28,7 @@
         </tr>
       </thead>
       <tbody>
-           
+          
          @foreach ($allProgramsPosts as $Program)
         <tr>        
             
@@ -50,7 +50,11 @@
                   @endforeach
             
                 </td>
-                <td>{{$Program->subject->name}}</td>
+                <td>
+                @if ($Program->subject != null)
+                  {{$Program->subject->name}}
+                @endif                 
+                </td>
                 <td>{{$Program->title}}</td>
                 <td>{{$Program->description}}</td>
 

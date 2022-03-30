@@ -13,8 +13,14 @@
             <select class="form-control" name="dept">
                 
                 @foreach ($depts as $dept)                                 
-                        <option value="{{$dept->id}}"@if ($dept->id == $lecture_depts[0]->id) selected @endif>{{$dept->name}}</option>
-                       
+                        <option value="{{$dept->id}}"
+                            @if (old('dept') == null &&isset($lecture_depts)&& $lecture_depts->count()>0 &&$dept->id == $lecture_depts[0]->id)
+                                    selected
+                            @elseif (old('dept') != null && old('dept') == $dept->id)   
+                                    selected
+                            @endif>
+                              {{$dept->name}}
+                            </option>      
                 @endforeach
                 </select>
             <br>
@@ -23,9 +29,16 @@
 
 
             <label for="dept" class="form-label">{{__('views/post.year')}} </label>
-            <select class="form-control" name="years">
+            <select class="form-control" name="year">
             @foreach ($years as $year)                                 
-                   <option value="{{$year->id}}" @if ($year->id == $lecture_years[0]->id) selected @endif>{{$year->name}}</option>
+                   <option value="{{$year->id}}"
+                    @if (old('year') == null && isset($lecture_years) && $lecture_years->count()>0 && $year->id == $lecture_years[0]->id)
+                             selected 
+                    @elseif (old('year') != null && old('year')== $year->id)                       
+                            selected                         
+                    @endif>
+                      {{$year->name}}
+                    </option>
             @endforeach
             </select>
             <br>
@@ -35,8 +48,11 @@
                 <div class="form-check">
                     @foreach ($subjects as $subject)
                             
-                        <option value="{{$subject->id}}" @if ($subject->id == $lecture_subjects->id)
+                        <option value="{{$subject->id}}" 
+                        @if ($subject->id == $lecture_subjects->id && old('subject') == null)
                                 selected
+                        @elseif (old('subject') != null  && old('subject') == $subject->id)
+                            selected
                         @endif>
 
                             {{$subject->name}}
@@ -56,7 +72,12 @@
 
     <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">{{__('views/post.title').' '.__('views/post.lecture')}}</label>
-        <input type="text" name="title" cols="30" rows="8" placeholder="{{__('views/post.title').' '.__('views/post.lecture')}}" class="form-control" value="{{$lecture->title}}">
+        <input type="text" name="title" cols="30" rows="8" placeholder="{{__('views/post.title').' '.__('views/post.lecture')}}" class="form-control"
+         @if (old('title') == null)
+             value="{{$lecture->title}}"
+         @elseif (old('title') != null)
+             value="{{old('title')}}"
+         @endif >
         @error('title')
                     <small class="form-text text-danger">{{$message}}</small>
                 @enderror
@@ -80,6 +101,9 @@
         <br>
         <label for="formFile" class="form-label">{{__('views/post.add new file')}}</label>
         <input class="form-control" type="file" id="formFile" name="file">
+        @error('file')
+        <small class="form-text text-danger">{{$message}}</small>
+    @enderror
         
     </div>
 
